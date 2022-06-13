@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BookListViewModel>;
+
+<style>
+	th {
+		width: 300px;
+	}
+</style>
+
+<h1>Books</h1>
+<h2>New Books</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Author</th>
+			<th>Title</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var book in Model.Where(x=>x.PublishDate.Year == DateTime.Now.Year))
+		{
+			<tr>
+				<td>@book.Author</td>
+				<td>@book.Title</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<h2>Old Books</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Author</th>
+			<th>Title</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var book in Model.Where(x=>x.PublishDate.Year != DateTime.Now.Year))
+		{
+			<tr>
+				<td>@book.Author</td>
+				<td>@book.Title</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<a asp-controller="Home" asp-action="Index">Home</a>
